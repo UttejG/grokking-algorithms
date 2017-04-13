@@ -5,7 +5,7 @@ import com.alpinemonk.search.Search._
 
 
 class BinarySearchSpec extends WordSpec with Matchers {
-  "Search Function with Binary Search" should {
+  "Search function with Binary Search implementation" should {
     "find the element if exists" in {
       import BinarySearchImpl._
 
