@@ -1,6 +1,6 @@
-package com.alpinemonk.search
+package com.alpinemonk.grokkingalgos.search
 
-import com.alpinemonk.typeclasses.Searchable
+import com.alpinemonk.grokkingalgos.typeclasses.Searchable
 
 import scala.annotation.tailrec
 
