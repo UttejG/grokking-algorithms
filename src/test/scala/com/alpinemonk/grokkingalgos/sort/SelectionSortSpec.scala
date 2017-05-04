@@ -1,12 +1,13 @@
-package com.alpinemonk.grokkingalgos.search
+package com.alpinemonk.grokkingalgos.sort
 
 import org.scalatest.{Matchers, WordSpec}
+
 import scala.language.implicitConversions
 
 
 class SelectionSortSpec extends WordSpec with Matchers {
   "Sort function with Selection Sort implementation" should {
-    import SelectionSort._
+    import com.alpinemonk.grokkingalgos.sort.SelectionSort._
 
     val moderateSizedIntList = List(15, 25, 10, 20, 5, 30)
     val moderateSizedIntListWithDuplicates = List(15, 20, 10, 20, 5, 15)

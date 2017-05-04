@@ -1,4 +1,4 @@
-package com.alpinemonk.grokkingalgos.search
+package com.alpinemonk.grokkingalgos.sort
 
 import com.alpinemonk.grokkingalgos.typeclasses.Sortable
 
