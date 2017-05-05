@@ -6,11 +6,11 @@ import scala.annotation.tailrec
 
 object SelectionSort {
 
-  def findSmallestElement[A: Numeric](xs: List[A]): Option[A] =
+  def findSmallestElement[A: Ordering](xs: List[A]): Option[A] =
     if(xs.isEmpty) None
     else Some(xs.reduceLeft((acc: A, element: A) => if(implicitly[Ordering[A]].lteq(acc, element)) acc else element))
 
-  def removeElementIfExists[A: Numeric](dataStructure: List[A], element: A): List[A] = {
+  def removeElementIfExists[A: Ordering](dataStructure: List[A], element: A): List[A] = {
     if(dataStructure.isEmpty || !dataStructure.contains(element))
       dataStructure
     else {
@@ -19,9 +19,9 @@ object SelectionSort {
     }
   }
 
-  implicit val numericListSelectionSort =
+  implicit val listSelectionSort =
     new Sortable[List] {
-      override def sort[A: Numeric](dataStructure: List[A]): List[A] = {
+      override def sort[A: Ordering](dataStructure: List[A]): List[A] = {
         @tailrec
         def selectionSort(unsortedDataStructure: List[A], sortedDataStructure: List[A] = List.empty[A]): List[A] = {
           unsortedDataStructure match {
