@@ -19,21 +19,30 @@ object SelectionSort {
     }
   }
 
+  /* Justification for some decisions
+    1) Reversing the list on line 36 -
+        Appending to a list is O(n) and reversing a list is O(n).
+        So, instead of appending at every iteration, prepend to the list with O(1) and then reverse at the end.
+    2) Using get on an Option on line 41 -
+        When unsortedDataStructure is empty, it will terminate in the first two cases.
+  */
+
   implicit val listSelectionSort =
     new Sortable[List] {
       override def sort[A: Ordering](dataStructure: List[A]): List[A] = {
         @tailrec
         def selectionSort(unsortedDataStructure: List[A], sortedDataStructure: List[A] = List.empty[A]): List[A] = {
           unsortedDataStructure match {
-            case Nil => if(sortedDataStructure.isEmpty) List.empty[A] else sortedDataStructure
-            /* Justification for reversing the list at the end.
-               Appending to a list is O(n) and reversing a list is O(n).
-               So, instead of appending every iteration, prepend with O(1) and then reverse at the end. */
-            case head :: Nil => if(sortedDataStructure.isEmpty) List(head) else (head :: sortedDataStructure).reverse
+            case Nil if(sortedDataStructure.isEmpty) => List.empty[A]
+            case Nil => sortedDataStructure
+            case head :: Nil if(sortedDataStructure.isEmpty) => List(head)
+            case head :: Nil => (head :: sortedDataStructure).reverse
             case _ => {
-              //Justification for get: When unsortedDataStructure is empty, it will terminate at the first case
               val smallestInTheList = findSmallestElement(unsortedDataStructure).get
-              selectionSort(removeElementIfExists(unsortedDataStructure, smallestInTheList), smallestInTheList :: sortedDataStructure)
+              selectionSort(
+                removeElementIfExists(unsortedDataStructure, smallestInTheList),
+                smallestInTheList :: sortedDataStructure
+              )
             }
           }
         }

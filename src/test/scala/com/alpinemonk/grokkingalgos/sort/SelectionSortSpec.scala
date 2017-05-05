@@ -20,14 +20,15 @@ class SelectionSortSpec extends WordSpec with Matchers {
 
       sort(moderateSizedIntList) shouldBe ((1 to 6) map (_ * 5)).toList
     }
+
     "sort a moderate sized int list with duplicates" in {
       import com.alpinemonk.grokkingalgos.typeclasses.Sortable._
 
       sort(moderateSizedIntListWithDuplicates) shouldBe moderateSizedIntListWithDuplicates.sorted
     }
+
     "sort an empty list" in {
       import com.alpinemonk.grokkingalgos.typeclasses.Sortable._
-
       /*
        In absence of explicit type setting, compiler does this
        Error:(24, 11) ambiguous implicit values:
@@ -37,11 +38,13 @@ class SelectionSortSpec extends WordSpec with Matchers {
       */
       sort[List, Int](emptyList) shouldBe emptyList
     }
+
     "sort an single element int list" in {
       import com.alpinemonk.grokkingalgos.typeclasses.Sortable._
 
       sort(singleElementIntList) shouldBe singleElementIntList
     }
+
     "sort an two element int list" in {
       import com.alpinemonk.grokkingalgos.typeclasses.Sortable._
 
